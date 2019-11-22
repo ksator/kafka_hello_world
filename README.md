@@ -1,3 +1,14 @@
+# About this repo 
+
+Kakfa hello-world. 
+
+This repo provides instructions to: 
+- Deploy a Kakfa broker
+- Use Kafacat (a command line tool that can be used in producer mode or consumer mode) to publish messages to Kafka (producer mode) and to subscribe to topics and receive messages from Kafka (consumer mode)
+- Use python to publish messages to the broker (producers) and to subscribe to topics and receive messages from Kafka (consumers) 
+
+
+
 # Requirements
 
 ### Requirements to use the file [docker-compose.yml](docker-compose.yml)  
@@ -22,4 +33,4 @@ apt-get install kafkacat
 
 or install Docker and use the docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
 
-
+# Instructions

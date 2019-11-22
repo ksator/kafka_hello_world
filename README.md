@@ -7,9 +7,9 @@ This repo provides instructions to:
 - Use Kafacat (a command line tool that can be used in producer mode or consumer mode) to publish messages to Kafka (producer mode) and to subscribe to topics and receive messages from Kafka (consumer mode)
 - Use python to publish messages to the broker (producers) and to subscribe to topics and receive messages from Kafka (consumers) 
 
+# Instructions
 
-
-# Requirements
+## Requirements
 
 ### Requirements to use the file [docker-compose.yml](docker-compose.yml)  
 
@@ -21,16 +21,66 @@ Install Docker and Install Docker-compose
 
 On Ubuntu, run this command 
 ```
-pip install kafka-python  
+$ pip install kafka-python  
 ```
 
 ### Requirements to use kafkacat  
 
 On Ubuntu, run this command 
 ```
-apt-get install kafkacat
+$ apt-get install kafkacat
 ```
 
 or install Docker and use the docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
 
-# Instructions
+## Deploy a Kafka broker
+
+Edit the file [docker-compose.yml](docker-compose.yml) and update `KAFKA_ADVERTISED_HOST_NAME` with your host IP
+
+Run this command
+```
+$ docker-compose -f docker-compose.yml up -d
+```
+Verify
+```
+$ docker images | grep wurstmeister
+wurstmeister/kafka       latest              988f4a6ca13c        4 months ago        421MB
+wurstmeister/zookeeper   latest              3f43f72cb283        10 months ago       510MB
+```
+```
+$ docker ps
+CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                                                NAMES
+45b13d484728        wurstmeister/kafka       "start-kafka.sh"         9 hours ago         Up 9 hours          0.0.0.0:9092->9092/tcp                               kafka
+0957d9af0d62        wurstmeister/zookeeper   "/bin/sh -c '/usr/sb…"   9 hours ago         Up 9 hours          22/tcp, 2888/tcp, 3888/tcp, 0.0.0.0:2181->2181/tcp   zookeeper
+```
+
+
+  down               Stop and remove containers, networks, images, and volumes
+
+  stop               Stop services
+
+
+```
+jcluser@ubuntu:~$ docker-compose stop
+Stopping kafka     ... done
+Stopping zookeeper ... done
+
+jcluser@ubuntu:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+jcluser@ubuntu:~$ docker ps -a
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                        PORTS               NAMES
+fa2c9f1b93d0        edenhill/kafkacat:1.5.0   "kafkacat -b 100.123…"   9 hours ago         Exited (0) 9 hours ago                            hardcore_mestorf
+45b13d484728        wurstmeister/kafka        "start-kafka.sh"         9 hours ago         Exited (143) 36 seconds ago                       kafka
+0957d9af0d62        wurstmeister/zookeeper    "/bin/sh -c '/usr/sb…"   9 hours ago         Exited (137) 29 seconds ago                       zookeeper
+e0
+```
+
+```
+jcluser@ubuntu:~$ docker-compose down
+Stopping kafka     ... done
+Stopping zookeeper ... done
+Removing kafka     ... done
+Removing zookeeper ... done
+Removing network jcluser_default
+
+```

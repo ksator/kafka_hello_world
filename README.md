@@ -2,22 +2,20 @@
 
 ### Requirements to use the file [docker-compose.yml](docker-compose.yml)  
 
-The file [docker-compose.yml](docker-compose.yml) uses Docker images [wurstmeister/zookeeper](https://hub.docker.com/r/wurstmeister/zookeeper) and [wurstmeister/kafka](https://hub.docker.com/r/wurstmeister/kafka) 
+The file [docker-compose.yml](docker-compose.yml) uses the Docker images [wurstmeister/zookeeper](https://hub.docker.com/r/wurstmeister/zookeeper) and [wurstmeister/kafka](https://hub.docker.com/r/wurstmeister/kafka) 
 
 Install Docker and Install Docker-compose  
 
 ### Requirements to use the file [consumer.py](consumer.py) and [producer.py](producer.py)
 
-Run this command on Ubuntu 
-
+On Ubuntu, run this command 
 ```
 pip install kafka-python  
 ```
 
 ### Requirements to use kafkacat  
 
-Run this command on Ubuntu
-
+On Ubuntu, run this command 
 ```
 apt-get install kafkacat
 ```

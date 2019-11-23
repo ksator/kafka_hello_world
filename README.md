@@ -91,7 +91,30 @@ second message
 third message
 ####
 % Reached end of topic Topic1 [0] at offset 3: exiting
+$
 ```
+
+You can also change the delimiter (default is `\n`) that splits input (stdin) into messages.  
+Example with a new topic  
+```
+$ kafkacat -P -b 100.123.35.0:9092 -t Topic2 -D "##"
+message 1##message 2##message 3##
+```
+```
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic2 -e
+message 1
+message 2
+message 3
+% Reached end of topic Topic2 [0] at offset 3: exiting
+```
+
+You can also produce message from files. Kafkacat will read files. The entire file contents will be sent as one single message.
+```
+```
+```
+```
+
+
 # Python
 
 ## Requirements to use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)

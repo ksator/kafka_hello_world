@@ -49,10 +49,19 @@ $ apt-get install kafkacat
 
 Alternatively, install Docker and use the Docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
 
-Using the below command, Kafkacat is used in producer mode, the broker is 100.123.35.0:9092, the topic is Topic1. 
-Some messages are sent. 
+In producer mode, Kafkacat reads messages from stdin, and sends them to the broker.  
+Using the below command, Kafkacat is used in producer mode, the broker is 100.123.35.0:9092, the topic is Topic1.  
 ```
 $ kafkacat -P -b 100.123.35.0:9092 -t Topic1
+first message
+second message
+third message
+```
+
+In consumer mode, Kafkacat gets messages from the broker and writes messages to stdout. 
+Using the below command, Kafkacat is used in consumer mode, the broker is 100.123.35.0:9092, the topic is Topic1.  
+```
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic1
 first message
 second message
 third message

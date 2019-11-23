@@ -108,7 +108,23 @@ message 3
 % Reached end of topic Topic2 [0] at offset 3: exiting
 ```
 
-You can also produce message from files. Kafkacat will read files. The entire file contents will be sent as one single message.
+You can also produce message from files. Kafkacat will read files. The entire file content will be sent as one single message. The producer will exit after sending the messages.  
+```
+$ kafkacat -P -b 100.123.35.0:9092 -t Topic3 message1 message2
+$
+```
+```
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic3 -e
+The content of the file message1 is sent as one single message.
+
+The content of the file message2
+is sent
+as one single message.
+
+% Reached end of topic Topic3 [0] at offset 2: exiting
+$ 
+```
+
 ```
 ```
 ```

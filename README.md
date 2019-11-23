@@ -81,7 +81,17 @@ third message
 % Reached end of topic Topic1 [0] at offset 3: exiting
 $ 
 ```
-
+Using the below command, Kafkacat consumes the messages, changes the default delimiter (`\n`) to separate messages on output, and exit 
+```
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic1 -D "\n####\n" -e
+first message
+####
+second message
+####
+third message
+####
+% Reached end of topic Topic1 [0] at offset 3: exiting
+```
 # Python
 
 ## Requirements to use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)

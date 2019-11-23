@@ -21,14 +21,14 @@ The file [docker-compose.yml](docker-compose.yml) uses the Docker images [wurstm
 
 Install Docker and Install Docker-compose  
 
-### Requirements to use the file [consumer.py](consumer.py) and [producer.py](producer.py)
+### Requirements to use these Python files [consumer.py](consumer.py) and [producer.py](producer.py)
 
 On Ubuntu, run this command 
 ```
 $ pip install kafka-python  
 ```
 
-### Requirements to use kafkacat  
+### Requirements to use the tool kafkacat  
 
 On Ubuntu, run this command 
 ```
@@ -58,27 +58,29 @@ CONTAINER ID        IMAGE                    COMMAND                  CREATED   
 0957d9af0d62        wurstmeister/zookeeper   "/bin/sh -c '/usr/sb…"   9 hours ago         Up 9 hours          22/tcp, 2888/tcp, 3888/tcp, 0.0.0.0:2181->2181/tcp   zookeeper
 ```
 
+## 
 
-  down               Stop and remove containers, networks, images, and volumes
+## to stop services 
 
-  stop               Stop services
-
-
+### To stop services without removing containers
 ```
 jcluser@ubuntu:~$ docker-compose stop
 Stopping kafka     ... done
 Stopping zookeeper ... done
-
-jcluser@ubuntu:~$ docker ps
+```
+```
+$ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-jcluser@ubuntu:~$ docker ps -a
+```
+```
+$ docker ps -a
 CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                        PORTS               NAMES
-fa2c9f1b93d0        edenhill/kafkacat:1.5.0   "kafkacat -b 100.123…"   9 hours ago         Exited (0) 9 hours ago                            hardcore_mestorf
 45b13d484728        wurstmeister/kafka        "start-kafka.sh"         9 hours ago         Exited (143) 36 seconds ago                       kafka
 0957d9af0d62        wurstmeister/zookeeper    "/bin/sh -c '/usr/sb…"   9 hours ago         Exited (137) 29 seconds ago                       zookeeper
 e0
 ```
 
+### to stop services and remove containers
 ```
 jcluser@ubuntu:~$ docker-compose down
 Stopping kafka     ... done
@@ -86,5 +88,12 @@ Stopping zookeeper ... done
 Removing kafka     ... done
 Removing zookeeper ... done
 Removing network jcluser_default
-
+```
+```
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+```
+$ docker ps -a
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                        PORTS               NAMES
 ```

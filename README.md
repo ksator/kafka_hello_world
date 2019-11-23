@@ -71,6 +71,7 @@ Using the below command, Kafkacat consumes 2 messages and exit
 $ kafkacat -C -b 100.123.35.0 -t Topic1 -c 2 -e
 first message
 second message
+$ 
 ```
 Using the below command, Kafkacat consumes the last 2 messages and exit
 ```
@@ -78,6 +79,7 @@ $ kafkacat -C -b 100.123.35.0:9092 -t Topic1 -o -2 -e
 second message
 third message
 % Reached end of topic Topic1 [0] at offset 3: exiting
+$ 
 ```
 
 # Python

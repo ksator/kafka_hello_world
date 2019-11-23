@@ -58,7 +58,7 @@ second message
 third message
 ```
 
-In consumer mode, Kafkacat gets messages from the broker and writes messages to stdout. 
+In consumer mode, Kafkacat gets messages from the broker and writes messages to stdout.  
 Using the below command, Kafkacat is used in consumer mode, the broker is 100.123.35.0:9092, the topic is Topic1.  
 ```
 $ kafkacat -C -b 100.123.35.0:9092 -t Topic1
@@ -66,13 +66,13 @@ first message
 second message
 third message
 ```
-Using the below command, Kafkacat consume the 2 messages and exit
+Using the below command, Kafkacat consumes 2 messages and exit
 ```
 $ kafkacat -C -b 100.123.35.0 -t Topic1 -c 2 -e
 first message
 second message
 ```
-Using the below command, Kafkacat consume the last 2 messages and exit
+Using the below command, Kafkacat consumes the last 2 messages and exit
 ```
 $ kafkacat -C -b 100.123.35.0:9092 -t Topic1 -o -2 -e
 second message

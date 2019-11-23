@@ -50,6 +50,8 @@ $ apt-get install kafkacat
 Alternatively, install Docker and use the Docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
 
 In producer mode, Kafkacat reads messages from stdin, and sends them to the broker.  
+In consumer mode, Kafkacat gets messages from the broker and writes messages to stdout.  
+
 Using the below command, Kafkacat is used in producer mode, the broker is 100.123.35.0:9092, the topic is Topic1.  
 ```
 $ kafkacat -P -b 100.123.35.0:9092 -t Topic1
@@ -57,8 +59,6 @@ first message
 second message
 third message
 ```
-
-In consumer mode, Kafkacat gets messages from the broker and writes messages to stdout.  
 Using the below command, Kafkacat is used in consumer mode, the broker is 100.123.35.0:9092, the topic is Topic1.  
 ```
 $ kafkacat -C -b 100.123.35.0:9092 -t Topic1
@@ -81,7 +81,7 @@ third message
 % Reached end of topic Topic1 [0] at offset 3: exiting
 $ 
 ```
-Using the below command, Kafkacat consumes the messages, changes the default delimiter (`\n`) to separate messages on output, and exit 
+Using the below command, Kafkacat consumes the messages, changes the delimiter ( default is `\n`) that separates messages on stdout, and exit 
 ```
 $ kafkacat -C -b 100.123.35.0:9092 -t Topic1 -D "\n####\n" -e
 first message

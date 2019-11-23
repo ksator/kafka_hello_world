@@ -11,39 +11,20 @@ This repo provides instructions to:
   - to publish messages to the broker
   - to subscribe to topics and receive messages from Kafka
   
-# Requirements
-
-## Requirements to use the file [docker-compose.yml](docker-compose.yml)  
+# Deploy a Kafka broker
 
 The file [docker-compose.yml](docker-compose.yml) uses the Docker images [wurstmeister/zookeeper](https://hub.docker.com/r/wurstmeister/zookeeper) and [wurstmeister/kafka](https://hub.docker.com/r/wurstmeister/kafka) 
 
-Install Docker and Install Docker-compose  
-
-## Requirements to use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)
-
-On Ubuntu, run this command 
-```
-$ pip install kafka-python  
-```
-
-## Requirements to use the tool kafkacat  
-
-On Ubuntu, run this command 
-```
-$ apt-get install kafkacat
-```
-
-or install Docker and use the docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
-
-# Deploy a Kafka broker
+Install Docker and Docker-compose  
 
 Edit the file [docker-compose.yml](docker-compose.yml) and update `KAFKA_ADVERTISED_HOST_NAME` with your host IP
 
-Run this command
+Run this command to create and start the containers
 ```
 $ docker-compose -f docker-compose.yml up -d
 ```
-Verify
+
+Run these commands to verify
 ```
 $ docker images | grep wurstmeister
 wurstmeister/kafka       latest              988f4a6ca13c        4 months ago        421MB
@@ -61,7 +42,31 @@ Connection to 100.123.35.0 9092 port [tcp/*] succeeded!
 ```
 # Kafkacat command line tool 
 
+On Ubuntu, run this command to install kafkacat
+```
+$ apt-get install kafkacat
+```
+
+Alternatively, install Docker and use the Docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
+
+Using the below command, Kafkacat is used in producer mode, the broker is 100.123.35.0:9092, the topic is Topic1. 
+Some messages are sent. 
+```
+$ kafkacat -P -b 100.123.35.0:9092 -t Topic1
+first message
+second message
+third message
+```
+
 # Python
+
+## Requirements to use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)
+
+On Ubuntu, run this command 
+```
+$ pip install kafka-python  
+```
+
 
 # Stop services 
 

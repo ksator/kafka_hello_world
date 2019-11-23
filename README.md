@@ -11,24 +11,22 @@ This repo provides instructions to:
   - to publish messages to the broker
   - to subscribe to topics and receive messages from Kafka
   
-# Instructions
+# Requirements
 
-## Requirements
-
-### Requirements to use the file [docker-compose.yml](docker-compose.yml)  
+## Requirements to use the file [docker-compose.yml](docker-compose.yml)  
 
 The file [docker-compose.yml](docker-compose.yml) uses the Docker images [wurstmeister/zookeeper](https://hub.docker.com/r/wurstmeister/zookeeper) and [wurstmeister/kafka](https://hub.docker.com/r/wurstmeister/kafka) 
 
 Install Docker and Install Docker-compose  
 
-### Requirements to use these Python files [consumer.py](consumer.py) and [producer.py](producer.py)
+## Requirements to use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)
 
 On Ubuntu, run this command 
 ```
 $ pip install kafka-python  
 ```
 
-### Requirements to use the tool kafkacat  
+## Requirements to use the tool kafkacat  
 
 On Ubuntu, run this command 
 ```
@@ -37,9 +35,7 @@ $ apt-get install kafkacat
 
 or install Docker and use the docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
 
-## Deploy a Kafka broker
-
-### Start the services 
+# Deploy a Kafka broker
 
 Edit the file [docker-compose.yml](docker-compose.yml) and update `KAFKA_ADVERTISED_HOST_NAME` with your host IP
 
@@ -47,7 +43,7 @@ Run this command
 ```
 $ docker-compose -f docker-compose.yml up -d
 ```
-### Verify
+Verify
 ```
 $ docker images | grep wurstmeister
 wurstmeister/kafka       latest              988f4a6ca13c        4 months ago        421MB
@@ -63,13 +59,13 @@ CONTAINER ID        IMAGE                    COMMAND                  CREATED   
 $ nc -vz 100.123.35.0 9092
 Connection to 100.123.35.0 9092 port [tcp/*] succeeded!
 ```
-## Kafkacat command line tool 
+# Kafkacat command line tool 
 
-## Python
+# Python
 
-## Stop services 
+# Stop services 
 
-### To stop services without removing containers
+To stop services without removing containers, run this command: 
 ```
 $ docker-compose stop
 Stopping kafka     ... done
@@ -87,7 +83,7 @@ CONTAINER ID        IMAGE                     COMMAND                  CREATED  
 e0
 ```
 
-### To stop services and remove containers
+To stop services and remove containers, run this command: 
 ```
 $ docker-compose down
 Stopping kafka     ... done

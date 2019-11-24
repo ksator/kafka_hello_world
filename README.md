@@ -120,8 +120,16 @@ message 3
 ```
 ## Produce messages from files 
 
-You can also produce messages from files. Kafkacat will read files. The entire file content will be sent as one single message. The producer will exit after sending the messages.  
+You can also produce messages from files. Kafkacat will read files.  
+The entire file content will be sent as one single message. The producer will exit after sending the messages.  
+
 ```
+$ more message1
+The content of the file message1 is sent as one single message.
+$ more message2
+The content of the file message2
+is sent
+as one single message.
 $ kafkacat -P -b 100.123.35.0:9092 -t Topic3 message1 message2
 $
 ```
@@ -200,7 +208,21 @@ Metadata for all topics (from broker -1: 100.123.35.0:9092/bootstrap):
 ```
 
 ## Using Docker 
+
+Insteaf of installing kafkacat you can install Docker and use the Docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
+
 ```
+$ docker run -it --network=host edenhill/kafkacat:1.5.0 -C -b 100.123.35.0:9092 -t Topic1 -e
+first message
+second message
+third message
+% Reached end of topic Topic1 [0] at offset 3: exiting
+$
+```
+```
+$ docker images edenhill/kafkacat
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+edenhill/kafkacat   1.5.0               d3dc4f492999        2 months ago        22.4MB
 ```
 
 # Python
@@ -211,7 +233,13 @@ On Ubuntu, run this command
 ```
 $ pip install kafka-python  
 ```
+## 
 
+```
+```
+
+```
+```
 
 # Stop services 
 

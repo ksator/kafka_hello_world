@@ -230,7 +230,7 @@ edenhill/kafkacat   1.5.0               d3dc4f492999        2 months ago        
 
 # Python
 
-## Requirements to use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)
+## Requirements
 
 On Ubuntu, run this command 
 ```
@@ -238,15 +238,62 @@ $ pip install kafka-python
 ```
 ## Use Python to produce and consume messages  
 
-```
-```
+### Produce a single message 
 
 ```
+>>> from kafka import KafkaProducer
+>>>
+>>> topic = "topic6"
+>>> key="key1"
+>>> value="value1"
+>>> kafka = '100.123.35.0:9092'
+>>>
+>>> producer = KafkaProducer(bootstrap_servers=[kafka], security_protocol="PLAINTEXT", retries=2, compression_type=None, request_timeout_ms=10000)
+>>> producer.bootstrap_connected()
+True
+>>> message = producer.send(topic, key = key, value = value)
+>>> producer.flush()
+>>> exit()
+
+```
+### Consume messages
+```
+>>> from kafka import KafkaConsumer
+>>>
+>>> kafka = '100.123.35.0:9092'
+>>> topic = "topic6"
+>>>
+>>> consumer1 = KafkaConsumer(topic, bootstrap_servers=kafka, security_protocol="PLAINTEXT", auto_offset_reset='earliest')
+>>>
+>>> consumer1.bootstrap_connected()
+True
+>>>
+>>> consumer1.topics()
+set([u'topic1', u'Topic2', u'topic3', u'topic4', u'topic6'])
+>>>
+>>> for message in consumer1:
+...     print ("topic=%s offset=%d key=%s value=%s" % (message.topic, message.offset, message.key, message.value))
+...
+topic=topic6 offset=0 key=key1 value=value1
+
+```
+### Produce and consume messages 
+
+use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)
+
+```
+$ python producer.py
+```
+```
+$ python consumer.py
+topic=topic5 offset=0 key=key1 value=value1
+topic=topic5 offset=1 key=key2 value=value2
 ```
 
 # Stop services 
 
-To stop services without removing containers, run this command: 
+## stop services without removing containers
+
 ```
 $ docker-compose stop
 Stopping kafka     ... done
@@ -264,7 +311,7 @@ CONTAINER ID        IMAGE                     COMMAND                  CREATED  
 e0
 ```
 
-To stop services and remove containers, run this command: 
+## stop services and remove containers
 ```
 $ docker-compose down
 Stopping kafka     ... done

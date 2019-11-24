@@ -306,7 +306,6 @@ $ docker ps -a
 CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS                        PORTS               NAMES
 45b13d484728        wurstmeister/kafka        "start-kafka.sh"         9 hours ago         Exited (143) 36 seconds ago                       kafka
 0957d9af0d62        wurstmeister/zookeeper    "/bin/sh -c '/usr/sb…"   9 hours ago         Exited (137) 29 seconds ago                       zookeeper
-e0
 ```
 
 ## stop services and remove containers

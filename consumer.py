@@ -1,7 +1,7 @@
 from kafka import KafkaConsumer
 
 kafka = '100.123.35.0:9092'
-topic = "topic1" 
+topic = "topic5" 
 
 # auto_offset_reset can be set to 'latest' or 'earliest'
 consumer1 = KafkaConsumer(topic, bootstrap_servers=kafka, security_protocol="PLAINTEXT", auto_offset_reset='earliest')

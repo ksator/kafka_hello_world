@@ -40,9 +40,12 @@ CONTAINER ID        IMAGE                    COMMAND                  CREATED   
 $ nc -vz 100.123.35.0 9092
 Connection to 100.123.35.0 9092 port [tcp/*] succeeded!
 ```
-# Kafkacat command line tool 
+# Kafkacat 
+
+Kafkacat is a command line tool to produce and consume messages  
 
 ## Installation 
+
 On Ubuntu, run this command to install kafkacat
 ```
 $ apt-get install kafkacat
@@ -212,7 +215,7 @@ Metadata for all topics (from broker -1: 100.123.35.0:9092/bootstrap):
 Insteaf of installing kafkacat you can install Docker and use the Docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
 
 ```
-$ docker run -it --network=host edenhill/kafkacat:1.5.0 -C -b 100.123.35.0:9092 -t Topic1 -e
+$ docker run --rm -it edenhill/kafkacat:1.5.0 -C -b 100.123.35.0:9092 -t Topic1 -e
 first message
 second message
 third message
@@ -233,7 +236,7 @@ On Ubuntu, run this command
 ```
 $ pip install kafka-python  
 ```
-## 
+## Use Python to produce and consume messages  
 
 ```
 ```

@@ -283,8 +283,6 @@ use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)
 
 ```
 $ python producer.py
-```
-```
 $ python consumer.py
 topic=topic5 offset=0 key=key1 value=value1
 topic=topic5 offset=1 key=key2 value=value2

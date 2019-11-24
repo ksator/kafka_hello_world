@@ -42,12 +42,15 @@ Connection to 100.123.35.0 9092 port [tcp/*] succeeded!
 ```
 # Kafkacat command line tool 
 
+## Installation 
 On Ubuntu, run this command to install kafkacat
 ```
 $ apt-get install kafkacat
 ```
 
 Alternatively, install Docker and use the Docker image [edenhill/kafkacat](https://hub.docker.com/r/edenhill/kafkacat/)  
+
+## Produce and consume messages 
 
 In producer mode, Kafkacat reads messages from stdin, and sends them to the broker.  
 In consumer mode, Kafkacat gets messages from the broker and writes messages to stdout.  
@@ -59,13 +62,16 @@ first message
 second message
 third message
 ```
-Using the below command, Kafkacat is used in consumer mode, the broker is 100.123.35.0:9092, the topic is Topic1.  
+Using the below command, Kafkacat is used in consumer mode
 ```
 $ kafkacat -C -b 100.123.35.0:9092 -t Topic1
 first message
 second message
 third message
 ```
+
+## Limit the number of messages to consume 
+
 Using the below command, Kafkacat consumes 2 messages and exit
 ```
 $ kafkacat -C -b 100.123.35.0 -t Topic1 -c 2 -e
@@ -81,6 +87,10 @@ third message
 % Reached end of topic Topic1 [0] at offset 3: exiting
 $ 
 ```
+## Change the delimiter 
+
+### On the consumer 
+
 Using the below command, Kafkacat consumes the messages, changes the delimiter ( default is `\n`) that separates messages on stdout, and exit 
 ```
 $ kafkacat -C -b 100.123.35.0:9092 -t Topic1 -D "\n####\n" -e
@@ -93,6 +103,7 @@ third message
 % Reached end of topic Topic1 [0] at offset 3: exiting
 $
 ```
+### On the producer 
 
 You can also change on the producer the delimiter (default is `\n`) that splits input (stdin) into messages.  
 Example with a new topic  
@@ -107,6 +118,7 @@ message 2
 message 3
 % Reached end of topic Topic2 [0] at offset 3: exiting
 ```
+## Produce messages from files 
 
 You can also produce messages from files. Kafkacat will read files. The entire file content will be sent as one single message. The producer will exit after sending the messages.  
 ```
@@ -124,12 +136,41 @@ as one single message.
 % Reached end of topic Topic3 [0] at offset 2: exiting
 $ 
 ```
+## Messages and keys
+
+In the below example, the producer uses the delimiter is `:` to split keys and messages. 
+
+```
+$ kafkacat -P -b 100.123.35.0:9092 -t Topic4 -K:
+key1:message1
+Key2:message2
+Key3:message3
+```
+In the below example, the consumer uses the delimiter is `:::` to split keys and messages. 
+
+```
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic4 -K: -e
+key1:::message1
+Key2:::message2
+Key3:::message3
+$ 
+```
+In the below example, the consumer get the messages without the keys
+
+```
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic4  -e
+message1
+message2
+message3
+$
+```
+## 
 
 ```
 ```
+## Using Docker 
 ```
 ```
-
 
 # Python
 

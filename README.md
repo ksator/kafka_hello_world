@@ -136,7 +136,7 @@ as one single message.
 % Reached end of topic Topic3 [0] at offset 2: exiting
 $ 
 ```
-## Messages and keys
+## Messages with a key
 
 In the below example, the producer uses the delimiter is `:` to split keys and messages. 
 
@@ -155,19 +155,50 @@ Key2:::message2
 Key3:::message3
 $ 
 ```
-In the below example, the consumer get the messages without the keys
+In the below example, the consumer gets the messages without the keys
 
 ```
-$ kafkacat -C -b 100.123.35.0:9092 -t Topic4  -e
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic4 -e
 message1
 message2
 message3
 $
 ```
-## 
+In the below example, the consumer changes the output format.  
+It uses the option `%k` to get the messages key and `%s` to get the messages payload
+```
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic4 -f "\nKey %k\nValue %s\n" -e
+
+Key: key1
+Value: message1
+
+Key: Key2
+Value: message2
+
+Key: Key3
+Value: message3
+% Reached end of topic Topic5 [0] at offset 3: exiting
+$
+```
+
+## List metadata from topics from a broker
 
 ```
+$ kafkacat -L -b 100.123.35.0:9092
+Metadata for all topics (from broker -1: 100.123.35.0:9092/bootstrap):
+ 1 brokers:
+  broker 1001 at 100.123.35.0:9092
+ 6 topics:
+  topic "Topic4" with 1 partitions:
+    partition 0, leader 1001, replicas: 1001, isrs: 1001
+  topic "Topic1" with 1 partitions:
+    partition 0, leader 1001, replicas: 1001, isrs: 1001
+  topic "Topic2" with 1 partitions:
+    partition 0, leader 1001, replicas: 1001, isrs: 1001
+  topic "Topic3" with 1 partitions:
+    partition 0, leader 1001, replicas: 1001, isrs: 1001
 ```
+
 ## Using Docker 
 ```
 ```

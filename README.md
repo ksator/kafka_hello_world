@@ -160,7 +160,7 @@ Key3:message3
 In the below example, the consumer uses the delimiter is `:::` to split keys and messages. 
 
 ```
-$ kafkacat -C -b 100.123.35.0:9092 -t Topic4 -K: -e
+$ kafkacat -C -b 100.123.35.0:9092 -t Topic4 -K::: -e
 key1:::message1
 Key2:::message2
 Key3:::message3
@@ -239,6 +239,8 @@ $ pip install kafka-python
 ## Use Python to produce and consume messages  
 
 ### Produce a single message 
+
+This python interactive session produces one single message (key is `key1` and payload is `value1`) to topic `topic6` on the broker `100.123.35.0:9092`
 
 ```
 >>> from kafka import KafkaProducer

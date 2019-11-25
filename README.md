@@ -240,7 +240,7 @@ $ pip install kafka-python
 
 ### Produce a single message 
 
-This python interactive session produces one single message (key is `key1` and payload is `value1`) to topic `topic6` on the broker `100.123.35.0:9092`
+This python interactive session produces one single message (key is `key1` and payload is `value1`) to the topic `topic6` on the broker `100.123.35.0:9092`
 
 ```
 >>> from kafka import KafkaProducer
@@ -281,7 +281,7 @@ topic=topic6 offset=0 key=key1 value=value1
 ```
 ### Produce and consume messages 
 
-use the Python files [consumer.py](consumer.py) and [producer.py](producer.py)
+use the Python files [consumer.py](consumer.py) and [producer.py](producer.py) to produce and consume several messages 
 
 ```
 $ python producer.py
